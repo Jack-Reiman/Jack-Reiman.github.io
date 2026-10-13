@@ -1,0 +1,12 @@
+reference_site/
+renders/
+shot*.png
+pdf_page_*.png
+setup_github.py
+rebuild_compressed.py
+__pycache__/
+*.tmp*
+.DS_Store
+Thumbs.db
+dist/
+basic hierachy and layout.pdf
