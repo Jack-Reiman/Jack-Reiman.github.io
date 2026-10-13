@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - master
   workflow_dispatch:
 
 jobs:
@@ -27,7 +26,7 @@ jobs:
           API_TOKEN_GITHUB: ${{ secrets.DEPLOY_TOKEN }}
         with:
           source-directory: 'dist'
-          destination-github-username: '${{ github.repository_owner }}'
-          destination-repository-name: '${{ vars.PUBLIC_PAGES_REPO || "Jack-Reiman.github.io" }}'
+          destination-github-username: 'Jack-Reiman'
+          destination-repository-name: 'Jack-Reiman.github.io'
           user-email: 'reimanja@uw.edu'
           target-branch: 'main'
