@@ -164,3 +164,52 @@
   transition: opacity 0.35s ease !important;
   will-change: opacity;
 }
+
+/* 3D Carousel Navigation */
+.works-layer__controls {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 30;
+  transition: opacity 0.25s var(--ease);
+}
+.carousel-arrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--dim);
+  background: var(--warm-card);
+  border: 1px solid rgba(31, 35, 30, 0.12);
+  padding: 4px 12px;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s var(--ease);
+  cursor: pointer;
+  user-select: none;
+}
+.carousel-arrow:hover {
+  color: var(--terracotta);
+  border-color: var(--terracotta);
+  box-shadow: 0 2px 10px rgba(217, 75, 50, 0.18);
+  transform: translateY(-1px);
+}
+.carousel-dot {
+  height: 6px;
+  border-radius: 3px;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.25s var(--ease);
+}
+.carousel-dot.is-active {
+  width: 18px;
+  background: var(--terracotta);
+}
+.carousel-dot:not(.is-active) {
+  width: 6px;
+  background: var(--hair);
+}
+.carousel-dot:not(.is-active):hover {
+  background: var(--dim);
+}
