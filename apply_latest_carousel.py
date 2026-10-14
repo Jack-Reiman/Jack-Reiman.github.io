@@ -70,7 +70,7 @@ const applyCarousel = () => {
     const slot = (idx - activeRef.current + 3) % 3;
 
     if (slot === 0) {
-      const scale = hoveredRef.current ? 1.36 : 1.0;
+      const maxScale = slug === 'worlds-robot' ? 1.15 : 1.36; const scale = hoveredRef.current ? maxScale : 1.0;
       if (fig) {
         fig.style.transform = `translate3d(0px, 0px, 0px) scale(${scale})`;
         fig.style.opacity = '1';
@@ -337,12 +337,12 @@ function wm2(e, t, n, r, l, figs) {
   const rightMargin = 40;
   const availW = Math.max(400, e - side - rightMargin);
   const cx_center = Math.round(side + availW * 0.5);
-  const cy_mid = Math.round(t * 0.50) - 20;
-  const sz = Math.round(Math.min(420, availW * 0.35, (t - 120) * 0.52));
+  const cy_mid = Math.round(t * 0.50) - 10;
+  const sz = Math.round(Math.min(420, availW * 0.35, (t - 120) * 0.50));
   return [
     { cx: cx_center, cy: cy_mid + 20, size: sz },
     { cx: cx_center, cy: cy_mid + 4, size: sz },
-    { cx: cx_center, cy: cy_mid - 16, size: sz }
+    { cx: cx_center, cy: cy_mid + 30, size: Math.round(sz * 0.78) }
   ];
 }
 """
@@ -357,7 +357,7 @@ function wm2(e, t, n, r, l, figs) {
     new_text = new_text.replace('d=setTimeout(()=>document.fonts.ready.then(p),1400)',
                                 'd=setTimeout(()=>document.fonts.ready.then(p),0)')
 
-    bundle_tag = "V8kL9mZ2"
+    bundle_tag = "K7mQ2pX9"
     new_js = f"assets/index-{bundle_tag}.js"
     with open(new_js, "w", encoding="utf-8") as out:
         out.write(new_text)
