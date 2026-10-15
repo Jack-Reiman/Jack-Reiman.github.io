@@ -4,18 +4,7 @@
 .works-layer__ink { display: none !important; }
 .page__read, .page__lift { display: none !important; }
 
-@media (min-width: 769px) {
-  article[aria-labelledby*="cycloidal-gearbox"] .page__stage {
-    transform: translateY(-60px);
-    margin-bottom: -40px;
-  }
-}
-@media (max-width: 768px) {
-  article[aria-labelledby*="cycloidal-gearbox"] .page__stage {
-    transform: translateY(-30px);
-    margin-bottom: -20px;
-  }
-}
+
 
 /* --- Editorial Swiss / Terracotta Color Accents & Refined Hierarchy --- */
 :root {
@@ -212,4 +201,49 @@
 }
 .carousel-dot:not(.is-active):hover {
   background: var(--dim);
+}
+
+/* --- Refined Page Transition Choreography --- */
+/* Outgoing page exits quickly and completely */
+.page--leaving {
+  opacity: 0 !important;
+  transition: opacity 0.16s ease-out !important;
+  pointer-events: none !important;
+}
+.page--leaving * {
+  pointer-events: none !important;
+}
+
+/* Incoming page waits for outgoing to disappear, then smoothly fades in */
+.page {
+  opacity: 0;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.16s;
+}
+.page.page--shown {
+  opacity: 1;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.16s !important;
+}
+
+/* Works layer choreography */
+.works-layer {
+  opacity: 0;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.16s;
+}
+.works-layer--leaving {
+  opacity: 0 !important;
+  transition: opacity 0.16s ease-out !important;
+  pointer-events: none !important;
+}
+.works-layer--shown {
+  opacity: 1;
+  transition: opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1) 0.16s !important;
+}
+
+/* Page content elements fade in together smoothly with the page */
+.page__bar, .page__note, .page__leaders, .page__key, .page__foot, .write, .page__next {
+  opacity: 0;
+  transition: opacity 0.35s ease 0.08s !important;
+}
+.page--shown :is(.page__bar, .page__note, .page__leaders, .page__key, .page__foot, .write, .page__next) {
+  opacity: 1;
 }
