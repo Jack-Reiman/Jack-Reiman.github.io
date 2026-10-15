@@ -240,10 +240,181 @@
 }
 
 /* Page content elements fade in together smoothly with the page */
-.page__bar, .page__note, .page__leaders, .page__key, .page__foot, .write, .page__next {
+.page__bar, .page__note, .page__leaders, .page__key, .page__foot, .write, .page__gallery, .page__next {
   opacity: 0;
   transition: opacity 0.35s ease 0.08s !important;
 }
-.page--shown :is(.page__bar, .page__note, .page__leaders, .page__key, .page__foot, .write, .page__next) {
+.page--shown :is(.page__bar, .page__note, .page__leaders, .page__key, .page__foot, .write, .page__gallery, .page__next) {
   opacity: 1;
+}
+
+/* ==========================================================================
+   Inner Page Clean Modern Typography (Helvetica & IBM Plex Sans / Mono)
+   No fancy serifs on inner pages. Highly readable, technical, and clean.
+   ========================================================================== */
+
+:root {
+  --font-clean-sans: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-clean-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+
+.page {
+  font-family: var(--font-clean-sans);
+  color: var(--ink);
+}
+
+.page__bar {
+  font-family: var(--font-clean-mono);
+}
+
+.page__nav, .page__meta, .page__close {
+  font-family: var(--font-clean-mono) !important;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.page__title {
+  font-family: var(--font-clean-sans) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  font-size: clamp(34px, 3.8vw, 54px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: -0.025em !important;
+  color: #1a1c18 !important;
+  margin: 0 0 16px !important;
+}
+
+.page__lede {
+  font-family: var(--font-clean-sans) !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 17px !important;
+  line-height: 1.6 !important;
+  letter-spacing: -0.01em !important;
+  color: #4b4e47 !important;
+  max-width: 58ch !important;
+}
+
+.page__side {
+  font-family: var(--font-clean-mono) !important;
+}
+
+.page__facts {
+  font-family: var(--font-clean-mono) !important;
+}
+
+.page__facts dt {
+  font-size: 11px !important;
+  letter-spacing: 0.06em !important;
+  text-transform: uppercase !important;
+  color: var(--faint) !important;
+}
+
+.page__facts dd {
+  font-size: 12.5px !important;
+  color: #2b2e28 !important;
+}
+
+.page__next-title {
+  font-family: var(--font-clean-sans) !important;
+  font-weight: 600 !important;
+  font-style: normal !important;
+  font-size: 26px !important;
+  letter-spacing: -0.015em !important;
+}
+
+/* ==========================================================================
+   Project Image Gallery (Rich Photo Grid)
+   ========================================================================== */
+
+.page__gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  margin-top: 52px;
+  margin-bottom: 96px;
+  width: 100%;
+}
+
+.page__gallery-item {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.025);
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.page__gallery-item:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 0, 0, 0.18);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.07);
+}
+
+.page__gallery-item--wide {
+  grid-column: 1 / -1;
+}
+
+.page__gallery-media {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  background: #fbf9f4;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.page__gallery-item--wide .page__gallery-media {
+  aspect-ratio: 16 / 9;
+  max-height: 520px;
+}
+
+.page__gallery-img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.page__gallery-item:hover .page__gallery-img {
+  transform: scale(1.02);
+}
+
+.page__gallery-caption {
+  padding: 14px 18px;
+  font-family: var(--font-clean-sans);
+  font-size: 13.5px;
+  font-weight: 450;
+  line-height: 1.5;
+  color: #3b3e37;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .page__gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 36px;
+    margin-bottom: 60px;
+  }
+  .page__gallery-item--wide {
+    grid-column: 1;
+  }
+  .page__gallery-media {
+    aspect-ratio: 16 / 11;
+  }
+  .page__title {
+    font-size: 30px !important;
+  }
+  .page__lede {
+    font-size: 16px !important;
+  }
 }
